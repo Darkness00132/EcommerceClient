@@ -10,16 +10,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-import { ToastrService } from 'ngx-toastr';
-
 import { AuthService } from '../../services/authService';
 import { RegisterRequest } from '../../models/register-request';
 import { NotificationService } from '../../../../core/services/notification-service';
+import { TranslocoPipe } from '@jsverse/transloco';
+import { AuthCard } from '../../../../shared/components/auth-card/auth-card';
 
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [
+    AuthCard,
+    TranslocoPipe,
     RouterLink,
     ReactiveFormsModule,
     MatFormFieldModule,

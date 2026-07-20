@@ -1,0 +1,12 @@
+<button
+  type="button"
+  (click)="switchLang(currentLang === 'en' ? 'ar' : 'en')"
+  class="flex h-9 items-center gap-1.5 rounded-full px-3 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white"
+  [attr.aria-label]="'Change language'"
+>
+  <mat-icon class="h-5 w-5 text-[20px]"> language </mat-icon>
+
+  <span>
+    {{ currentLang === 'en' ? 'AR' : 'EN' }}
+  </span>
+</button>

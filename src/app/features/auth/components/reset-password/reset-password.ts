@@ -12,11 +12,15 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AuthService } from '../../services/authService';
 import { NotificationService } from '../../../../core/services/notification-service';
 import { MatIcon } from '@angular/material/icon';
+import { TranslocoPipe } from '@jsverse/transloco';
+import { AuthCard } from '../../../../shared/components/auth-card/auth-card';
 
 @Component({
   selector: 'app-reset-password',
   standalone: true,
   imports: [
+    AuthCard,
+    TranslocoPipe,
     ReactiveFormsModule,
     MatCardModule,
     MatFormFieldModule,
@@ -24,6 +28,7 @@ import { MatIcon } from '@angular/material/icon';
     MatButtonModule,
     MatProgressSpinnerModule,
     MatIcon,
+    AuthCard,
   ],
   templateUrl: './reset-password.html',
   styleUrl: './reset-password.css',

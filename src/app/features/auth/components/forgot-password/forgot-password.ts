@@ -10,17 +10,21 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AuthService } from '../../services/authService';
 import { NotificationService } from '../../../../core/services/notification-service';
+import { TranslocoPipe } from '@jsverse/transloco';
+import { AuthCard } from '../../../../shared/components/auth-card/auth-card';
 
 @Component({
   selector: 'app-forgot-password',
   standalone: true,
   imports: [
+    TranslocoPipe,
     RouterLink,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     MatProgressSpinnerModule,
+    AuthCard,
   ],
   templateUrl: './forgot-password.html',
   styleUrl: './forgot-password.css',

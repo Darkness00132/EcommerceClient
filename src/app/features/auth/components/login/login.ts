@@ -3,7 +3,6 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterLink } from '@angular/router';
 import { finalize } from 'rxjs';
 
-import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -12,17 +11,24 @@ import { AuthService } from '../../services/authService';
 import { LoginRequest } from '../../models/login-request';
 import { AuthStore } from '../../../../core/store/authStore';
 import { NotificationService } from '../../../../core/services/notification-service';
+import { TranslocoPipe } from '@jsverse/transloco';
+import { AuthCard } from '../../../../shared/components/auth-card/auth-card';
+import { MatIcon } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
+    TranslocoPipe,
     RouterLink,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule,
     MatButtonModule,
+    MatInputModule,
     MatProgressSpinnerModule,
+    AuthCard,
+    MatIcon,
   ],
   templateUrl: './login.html',
   styleUrl: './login.css',
@@ -33,6 +39,7 @@ export class Login {
   private readonly notification = inject(NotificationService);
   private readonly router = inject(Router);
 
+  hidePassword = signal(true);
   loading = signal(false);
 
   form = new FormGroup({
@@ -45,6 +52,10 @@ export class Login {
       validators: [Validators.required],
     }),
   });
+
+  togglePasswordVisibility(): void {
+    this.hidePassword.update((value) => !value);
+  }
 
   onSubmit(): void {
     if (this.loading()) return;

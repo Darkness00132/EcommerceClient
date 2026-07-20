@@ -1,46 +1,30 @@
-<div class="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-  <div class="w-full max-w-md">
-    <div class="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
-      <div class="mb-8 text-center">
-        <h1 class="text-3xl font-bold text-gray-900">
-          @if (!verified()) {
-            Verify your email
-          } @else {
-            Email verified
-          }
-        </h1>
-
-        @if (!verified()) {
-          <p class="mt-2 text-sm text-gray-600">
-            Click the button below to verify your email address. Once verified, you'll be able to
-            sign in to your account.
-          </p>
+<app-auth-card [title]="title() | transloco" [subtitle]="subtitle() | transloco">
+  <div class="text-center">
+    @if (!verified()) {
+      <button
+        mat-flat-button
+        color="primary"
+        class="mt-2 h-12 w-full rounded-xl font-semibold shadow-sm transition-all hover:shadow-md"
+        (click)="verifyEmail()"
+        [disabled]="loading()"
+      >
+        @if (loading()) {
+          <div class="flex justify-center">
+            <mat-spinner diameter="22"></mat-spinner>
+          </div>
         } @else {
-          <p class="mt-2 text-sm text-gray-600">
-            Your email has been verified successfully. You can now sign in to your account.
-          </p>
+          {{ 'auth.verify_email.verify_button' | transloco }}
         }
-      </div>
-
-      @if (!verified()) {
-        <button
-          mat-flat-button
-          color="primary"
-          class="!w-full !h-11"
-          (click)="verifyEmail()"
-          [disabled]="loading()"
-        >
-          @if (loading()) {
-            <mat-spinner diameter="20"></mat-spinner>
-          } @else {
-            Verify Email
-          }
-        </button>
-      } @else {
-        <button mat-flat-button color="primary" class="!w-full !h-11" routerLink="/auth/login">
-          Sign In
-        </button>
-      }
-    </div>
+      </button>
+    } @else {
+      <button
+        mat-flat-button
+        color="primary"
+        class="mt-2 h-12 w-full rounded-xl font-semibold shadow-sm transition-all hover:shadow-md"
+        routerLink="/auth/login"
+      >
+        {{ 'auth.verify_email.sign_in_button' | transloco }}
+      </button>
+    }
   </div>
-</div>
+</app-auth-card>

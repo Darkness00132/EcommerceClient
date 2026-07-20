@@ -1,0 +1,11 @@
+<button
+  mat-icon-button
+  type="button"
+  (click)="toggleTheme()"
+  [attr.aria-label]="isDark() ? 'Switch to light mode' : 'Switch to dark mode'"
+  class="h-10! w-10! rounded-full! text-gray-700! hover:bg-gray-100! dark:text-gray-200! dark:hover:bg-gray-800!"
+>
+  <mat-icon>
+    {{ isDark() ? 'light_mode' : 'dark_mode' }}
+  </mat-icon>
+</button>
